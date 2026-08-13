@@ -6,6 +6,7 @@ import {
   hero,
   how,
   inbox,
+  lead,
   nav,
   problem,
   site,
@@ -81,5 +82,13 @@ describe("section content", () => {
   it("has CTA copy for both actions", () => {
     expect(cta.primaryCta).toBe("Book a demo");
     expect(cta.secondaryCta).toBe("Sign in");
+  });
+
+  it("has complete lead-capture copy", () => {
+    expect(lead.portfolioOptions.length).toBeGreaterThanOrEqual(4);
+    expect(lead.submit).toBe("Book a demo");
+    expect(lead.success.title.length).toBeGreaterThan(0);
+    expect(lead.modal.heading.length).toBeGreaterThan(0);
+    expect(lead.error).toContain(site.email);
   });
 });

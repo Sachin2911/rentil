@@ -12,31 +12,41 @@ vi.mock("@paper-design/shaders-react", () => ({
   GrainGradient: () => <div data-testid="shader-grain" />,
 }));
 
+// next/font/google needs the Next build pipeline — return static class handles.
+vi.mock("next/font/google", () => ({
+  Fraunces: () => ({ variable: "--font-fraunces", className: "font-fraunces" }),
+  Inter: () => ({ variable: "--font-inter", className: "font-inter" }),
+}));
+
 // jsdom lacks the observers and media APIs that motion/react relies on.
-class ObserverStub {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-  takeRecords() {
-    return [];
+// Guarded so node-environment test files (API routes) can share this setup.
+if (typeof window !== "undefined") {
+  class ObserverStub {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+    takeRecords() {
+      return [];
+    }
   }
+
+  Object.assign(globalThis, {
+    IntersectionObserver: ObserverStub,
+    ResizeObserver: ObserverStub,
+  });
+
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    configurable: true,
+    value: (query: string) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    }),
+  });
 }
-
-Object.assign(globalThis, {
-  IntersectionObserver: ObserverStub,
-  ResizeObserver: ObserverStub,
-});
-
-Object.defineProperty(window, "matchMedia", {
-  writable: true,
-  value: (query: string) => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: () => {},
-    removeListener: () => {},
-    addEventListener: () => {},
-    removeEventListener: () => {},
-    dispatchEvent: () => false,
-  }),
-});

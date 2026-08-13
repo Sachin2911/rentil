@@ -26,19 +26,24 @@ export function Visibility() {
           </FadeIn>
 
           <dl className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Each FadeIn div is a dt/dd group — a valid direct <dl> child.
+                The dt stays first in DOM order for assistive tech; order-*
+                utilities put the big value on top visually. */}
             {visibility.stats.map((stat, i) => (
-              <FadeIn key={stat.label} delay={i * 0.08} className="h-full">
-                <div className="flex h-full flex-col rounded-2xl border border-cream/15 bg-teal-dark/50 p-7 backdrop-blur-sm">
-                  <dd className="order-1 font-display text-5xl tracking-tight text-cream">
-                    {stat.value}
-                  </dd>
-                  <dt className="order-2 mt-4 text-sm font-semibold text-paper">
-                    {stat.label}
-                  </dt>
-                  <dd className="order-3 mt-1.5 text-sm leading-relaxed text-mist">
-                    {stat.detail}
-                  </dd>
-                </div>
+              <FadeIn
+                key={stat.label}
+                delay={i * 0.08}
+                className="flex h-full flex-col rounded-2xl border border-cream/15 bg-teal-dark/50 p-8 backdrop-blur-sm"
+              >
+                <dt className="order-2 mt-4 text-sm font-semibold text-paper">
+                  {stat.label}
+                </dt>
+                <dd className="order-1 font-display text-5xl tracking-tight text-cream">
+                  {stat.value}
+                </dd>
+                <dd className="order-3 mt-1.5 text-sm leading-relaxed text-mist">
+                  {stat.detail}
+                </dd>
               </FadeIn>
             ))}
           </dl>

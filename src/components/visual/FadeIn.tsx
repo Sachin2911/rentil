@@ -13,14 +13,13 @@ type FadeInProps = {
 export function FadeIn({ children, className, delay = 0, y = 28 }: FadeInProps) {
   const reduceMotion = useReducedMotion();
 
-  if (reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
+  // Always render motion.div: the server bakes the hidden initial style into the
+  // static HTML, so only motion's own mount pass can reliably correct the node for
+  // reduced-motion visitors. `initial={false}` shows content immediately, unanimated.
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y }}
+      initial={reduceMotion ? false : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.8, delay, ease: [0.22, 0.61, 0.36, 1] }}

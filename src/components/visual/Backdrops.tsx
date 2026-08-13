@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useReducedMotion } from "motion/react";
 
 // WebGL canvases only make sense in the browser — skip prerendering entirely.
 const MeshGradient = dynamic(
@@ -20,6 +21,7 @@ const fill = {
 } as const;
 
 export function HeroBackdrop() {
+  const reduceMotion = useReducedMotion();
   return (
     <div aria-hidden className="absolute inset-0 overflow-hidden">
       <MeshGradient
@@ -28,16 +30,18 @@ export function HeroBackdrop() {
         swirl={0.6}
         grainMixer={0.12}
         grainOverlay={0.08}
-        speed={0.5}
+        speed={reduceMotion ? 0 : 0.5}
         style={fill}
       />
-      {/* Readability scrim over the moving gradient */}
-      <div className="absolute inset-0 bg-teal-dark/35" />
+      {/* Readability scrim: strongest over the left text column, where the
+          shader's roaming cream spot would otherwise sink contrast */}
+      <div className="absolute inset-0 bg-gradient-to-r from-teal-dark/70 via-teal-dark/40 to-teal-dark/20" />
     </div>
   );
 }
 
 export function CtaBackdrop() {
+  const reduceMotion = useReducedMotion();
   return (
     <div aria-hidden className="absolute inset-0 overflow-hidden">
       <GrainGradient
@@ -47,7 +51,7 @@ export function CtaBackdrop() {
         softness={0.85}
         intensity={0.35}
         noise={0.3}
-        speed={0.7}
+        speed={reduceMotion ? 0 : 0.7}
         style={fill}
       />
       {/* Deepen toward the bottom, where the shader's cream waves sit under the CTA copy */}

@@ -7,6 +7,7 @@ import { WhoItsFor } from "@/components/WhoItsFor";
 import { Assurances } from "@/components/Assurances";
 import { CtaSection } from "@/components/CtaSection";
 import { Footer } from "@/components/Footer";
+import { LeadModal } from "@/components/lead/LeadModal";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <CtaSection />
       </main>
       <Footer />
+      <LeadModal />
     </>
   );
 }
