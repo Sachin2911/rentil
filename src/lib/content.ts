@@ -1,13 +1,15 @@
 /**
  * All page copy lives here so sections stay presentational
  * and tests can assert against a single source of truth.
+ *
+ * House style: short sentences. No em or en dashes (enforced by content.test.ts).
  */
 
 export const site = {
   name: "Rentil",
-  tagline: "Handled, or on your desk.",
+  tagline: "The AI assistant for property managers",
   description:
-    "Rentil is the AI admin layer for property management. It answers every tenant and owner message on WhatsApp, email and phone, resolves the routine ones in seconds, and puts the rest on your desk with the full story attached.",
+    "Rentil is an AI assistant for letting agencies and property managers. It answers routine tenant messages on WhatsApp, email and phone in seconds, hands the rest to you with context, and keeps a record of every promise.",
   email: "hello@rello.work",
   signInUrl: "https://app.rello.work/login",
   demoHref: "mailto:hello@rello.work?subject=Rentil%20demo",
@@ -24,10 +26,10 @@ export const nav = {
 } as const;
 
 export const hero = {
-  eyebrow: "The AI admin layer for property management",
-  headingA: "Handled,",
-  headingB: "or on your desk.",
-  lede: "Every tenant and owner message — WhatsApp, email or call — answered in seconds, or escalated to you with the full story attached. Nothing slips. Nothing is forgotten.",
+  eyebrow: "For letting agencies and managing agents",
+  headingA: "AI that answers",
+  headingB: "every tenant message.",
+  lede: "Rentil sits on the WhatsApp, email and phone lines you already have. Routine questions get answered in seconds. Anything unusual lands on your desk with the full story.",
   primaryCta: "Book a demo",
   secondaryCta: "Sign in",
   note: "No migration weekend. Nothing for tenants to install.",
@@ -52,8 +54,8 @@ export const inbox = {
 
 export const problem = {
   eyebrow: "Why clients leave",
-  heading: "Clients don't leave over bad service. They leave over silence.",
-  lede: "As the book grows, attention runs out before the work does. Messages land in personal WhatsApps, follow-ups live in one person's head, and nobody notices until the mandate is gone.",
+  heading: "Clients leave over silence, not service.",
+  lede: "As the book grows, messages land in personal WhatsApps and follow-ups live in one person's head. Nobody notices until the mandate is gone.",
   quotes: [
     {
       quote: "I sent three messages and nobody came back.",
@@ -61,7 +63,7 @@ export const problem = {
     },
     {
       quote: "Three weeks and the geyser still leaks.",
-      cause: "It stalled on a quote nobody chased — and nothing flagged it.",
+      cause: "It stalled on a quote nobody chased. Nothing flagged it.",
     },
     {
       quote: "I explained the whole history to someone new. Again.",
@@ -72,24 +74,24 @@ export const problem = {
 
 export const how = {
   eyebrow: "How it works",
-  heading: "One layer under the whole operation.",
-  lede: "Rentil isn't another system to run. It sits underneath the ones you already have.",
+  heading: "You keep your systems. Rentil handles the noise.",
+  lede: "It is not another platform to run. It works underneath the ones you already have.",
   steps: [
     {
       title: "Everything lands in one place",
-      body: "A WhatsApp, email, call or voice note becomes a job with a name, a property and a clock. Tenants keep the number they already have.",
+      body: "WhatsApps, emails, calls and voice notes become jobs with a name, a property and a clock.",
     },
     {
       title: "The routine answers itself",
-      body: "Rent dates, lease copies, charges, banking details. Rentil reads the lease and replies in seconds — at any hour.",
+      body: "Rent dates, lease copies, balances. Rentil reads the lease and replies in seconds, at any hour.",
     },
     {
       title: "The exceptions come to you",
-      body: "A burst geyser, a quote above your limit, an owner who has complained twice. Routed to a human with the history attached.",
+      body: "A burst geyser or a quote above your limit reaches a human, with the history attached.",
     },
     {
       title: "Nothing is forgotten",
-      body: "Who asked, what was promised, who did it, when. A record per property that survives staff turnover.",
+      body: "Every promise and repair goes on record, per property. It survives staff turnover.",
     },
   ],
 } as const;
@@ -97,27 +99,27 @@ export const how = {
 export const visibility = {
   eyebrow: "The dashboard",
   heading: "See trouble while it's still small.",
-  lede: "Leading indicators, not post-mortems. One screen shows what's moving, what's stuck, and who has gone quiet.",
+  lede: "One screen shows what's moving, what's stuck, and who has gone quiet.",
   stats: [
     {
       value: "18s",
       label: "Median first reply",
-      detail: "Across WhatsApp, email and phone.",
+      detail: "Across every channel.",
     },
     {
       value: "3",
       label: "Clients at risk",
-      detail: "Ranked by silence, not by who shouts loudest.",
+      detail: "Ranked by silence, not noise.",
     },
     {
       value: "41",
       label: "Jobs in motion",
-      detail: "Every one with a named owner.",
+      detail: "Each with a named owner.",
     },
     {
       value: "R 62k",
       label: "Waiting on a yes",
-      detail: "Approvals older than a day, and what each one blocks.",
+      detail: "Approvals older than a day.",
     },
   ],
 } as const;
@@ -128,17 +130,17 @@ export const audiences = {
   items: [
     {
       title: "Letting agencies",
-      body: "80 to 600 properties. Past the point where one person can hold it all.",
+      body: "80 to 600 properties. Too big for one head to hold.",
       tags: ["Rent", "Deposits", "Renewals"],
     },
     {
       title: "Managing agents",
-      body: "Blocks and sectional-title schemes, with boards to answer to.",
+      body: "Blocks and schemes, with boards to answer to.",
       tags: ["Levies", "Notices", "Board requests"],
     },
     {
       title: "Self-managed schemes",
-      body: "No agent appointed — the trustees carry it themselves.",
+      body: "No agent appointed. The trustees carry it.",
       tags: ["Charges", "Conduct rules", "Approvals"],
     },
   ],
@@ -152,7 +154,7 @@ export const assurances = {
     },
     {
       title: "Trust accounting in the model",
-      body: "Deposit rules, joint inspections and consent, from day one.",
+      body: "Deposit rules, inspections and consent, from day one.",
     },
     {
       title: "No migration weekend",
@@ -167,7 +169,7 @@ export const assurances = {
 
 export const cta = {
   heading: "Spend next week on clients, not admin.",
-  lede: "A 30-minute walkthrough using scenarios from your own portfolio.",
+  lede: "A 30-minute demo on your own portfolio. No slides.",
   primaryCta: "Book a demo",
   secondaryCta: "Sign in",
   note: "or write to us at",
@@ -182,28 +184,28 @@ export const lead = {
   portfolioPlaceholder: "Select a range",
   portfolioOptions: [
     "Under 80 properties",
-    "80–250 properties",
-    "250–600 properties",
+    "80 to 250 properties",
+    "250 to 600 properties",
     "600+ properties",
     "Body corporate / scheme",
   ],
   submit: "Book a demo",
   submitting: "Sending…",
   success: {
-    title: "Thanks — talk soon.",
+    title: "Thanks, talk soon.",
     body: "We'll come back to you within one working day to set a time.",
   },
   error: "Something went wrong. Email us at hello@rello.work instead.",
   modal: {
     heading: "See it on your own portfolio.",
-    body: "A 30-minute walkthrough, no slideware. Leave your details and we'll set it up.",
+    body: "Leave your details. We'll set up a 30-minute walkthrough.",
     dismiss: "Not now",
   },
 } as const;
 
 export const footer = {
   motto: "On your behalf.",
-  blurb: "Operations for people who look after property that isn't their own.",
+  blurb: "For people who look after property that isn't their own.",
   productHeading: "Product",
   contactHeading: "Contact",
   legal: `© ${new Date().getFullYear()} Rentil. All rights reserved.`,

@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { useReducedMotion } from "motion/react";
 
-// WebGL canvases only make sense in the browser — skip prerendering entirely.
+// WebGL canvases only make sense in the browser: skip prerendering entirely.
 const MeshGradient = dynamic(
   () => import("@paper-design/shaders-react").then((m) => m.MeshGradient),
   { ssr: false },

@@ -34,7 +34,7 @@ export function LeadForm({ onSuccess }: { onSuccess?: () => void }) {
       try {
         localStorage.setItem(LEAD_STORAGE_KEY, "submitted");
       } catch {
-        // storage may be unavailable (private mode) — nothing to do
+        // storage may be unavailable (private mode): nothing to do
       }
       onSuccess?.();
     } catch (err) {

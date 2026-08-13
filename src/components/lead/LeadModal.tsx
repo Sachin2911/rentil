@@ -41,7 +41,7 @@ export function LeadModal({ delayMs = 30_000 }: { delayMs?: number }) {
         localStorage.setItem(LEAD_STORAGE_KEY, "dismissed");
       }
     } catch {
-      // storage unavailable — the modal just won't remember
+      // storage unavailable: the modal just won't remember
     }
   }
 

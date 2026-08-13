@@ -26,7 +26,7 @@ export function Visibility() {
           </FadeIn>
 
           <dl className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Each FadeIn div is a dt/dd group — a valid direct <dl> child.
+            {/* Each FadeIn div is a dt/dd group, a valid direct <dl> child.
                 The dt stays first in DOM order for assistive tech; order-*
                 utilities put the big value on top visually. */}
             {visibility.stats.map((stat, i) => (
