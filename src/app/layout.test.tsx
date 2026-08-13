@@ -5,8 +5,8 @@ import { site } from "@/lib/content";
 describe("root metadata", () => {
   it("uses the brand tagline as the default title", () => {
     expect(metadata.title).toMatchObject({
-      default: `${site.name} — ${site.tagline}`,
-      template: `%s — ${site.name}`,
+      default: `${site.name} | ${site.tagline}`,
+      template: `%s | ${site.name}`,
     });
   });
 

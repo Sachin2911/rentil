@@ -27,9 +27,46 @@ describe("site content", () => {
     expect(site.demoHref).toContain(`mailto:${site.email}`);
   });
 
-  it("keeps the brand tagline", () => {
-    expect(site.tagline).toBe("Handled, or on your desk.");
-    expect(`${hero.headingA} ${hero.headingB}`).toBe(site.tagline);
+  it("names the product category in the tagline", () => {
+    expect(site.tagline).toBe("The AI assistant for property managers");
+  });
+
+  it("says what the product is in the hero heading", () => {
+    expect(`${hero.headingA} ${hero.headingB}`).toBe(
+      "AI that answers every tenant message.",
+    );
+  });
+});
+
+function allStrings(value: unknown, out: string[] = []): string[] {
+  if (typeof value === "string") {
+    out.push(value);
+  } else if (Array.isArray(value)) {
+    for (const item of value) allStrings(item, out);
+  } else if (value && typeof value === "object") {
+    for (const item of Object.values(value)) allStrings(item, out);
+  }
+  return out;
+}
+
+describe("house style", () => {
+  it("contains no em or en dashes anywhere in the copy", () => {
+    const everything = {
+      site,
+      nav,
+      hero,
+      inbox,
+      problem,
+      how,
+      visibility,
+      audiences,
+      assurances,
+      cta,
+      lead,
+    };
+    for (const text of allStrings(everything)) {
+      expect(text).not.toMatch(/[—–]/);
+    }
   });
 });
 

@@ -40,7 +40,7 @@ export function Nav() {
         aria-label="Main"
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6"
       >
-        <a href="#top" aria-label={`${site.name} — back to top`}>
+        <a href="#top" aria-label={`${site.name}, back to top`}>
           <Logo tone={solid ? "dark" : "light"} />
         </a>
 

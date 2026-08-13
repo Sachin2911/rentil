@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     );
   }
 
-  // Honeypot field: filled means bot — pretend success, store nothing.
+  // Honeypot field: filled means bot: pretend success, store nothing.
   if (typeof body.company === "string" && body.company.trim() !== "") {
     return NextResponse.json({ ok: true });
   }
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
   } catch (err) {
     console.error("Failed to persist lead", err);
     return NextResponse.json(
-      { ok: false, error: "Something went wrong — please email us instead." },
+      { ok: false, error: "Something went wrong. Please email us instead." },
       { status: 500 },
     );
   }
