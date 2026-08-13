@@ -9,7 +9,6 @@ import { Visibility } from "@/components/Visibility";
 import { WhoItsFor } from "@/components/WhoItsFor";
 import {
   audiences,
-  chat,
   cta,
   faq,
   flow,
@@ -57,14 +56,6 @@ describe("HowItWorks", () => {
     }
   });
 
-  it("shows the tenant chat answered by Rentil", () => {
-    render(<HowItWorks />);
-    expect(screen.getByText(chat.heading)).toBeInTheDocument();
-    for (const message of chat.messages) {
-      expect(screen.getByText(message.text)).toBeInTheDocument();
-    }
-    expect(screen.getByText(chat.caption)).toBeInTheDocument();
-  });
 });
 
 describe("Visibility", () => {

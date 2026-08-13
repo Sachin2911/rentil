@@ -101,24 +101,6 @@ export const flow = {
   ],
 } as const;
 
-export const chat = {
-  heading: "The routine, answered at 22:47",
-  messages: [
-    {
-      from: "tenant" as const,
-      text: "Hi, please can you send me a copy of my lease?",
-      time: "22:47",
-    },
-    {
-      from: "rentil" as const,
-      text: "Of course. Here is your signed lease for 12 Protea Road.",
-      attachment: "Lease_12_Protea_Road.pdf",
-      time: "22:47",
-    },
-  ],
-  caption: "Answered in 14 seconds. Nobody woke up.",
-} as const;
-
 export const visibility = {
   eyebrow: "The dashboard",
   heading: "See trouble while it's still small.",

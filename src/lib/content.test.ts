@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
   audiences,
-  chat,
   cta,
   faq,
   flow,
@@ -65,12 +64,6 @@ describe("section content", () => {
   it("draws the flow with three sources and two outcomes", () => {
     expect(flow.sources).toHaveLength(3);
     expect(flow.outcomes).toHaveLength(2);
-  });
-
-  it("shows a tenant chat that Rentil answers", () => {
-    expect(chat.messages).toHaveLength(2);
-    expect(chat.messages[0].from).toBe("tenant");
-    expect(chat.messages[1].from).toBe("rentil");
   });
 
   it("shows four dashboard stats with values and details", () => {
@@ -147,7 +140,6 @@ describe("house style", () => {
       problem,
       how,
       flow,
-      chat,
       visibility,
       audiences,
       founder,

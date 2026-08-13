@@ -1,4 +1,3 @@
-import { ChatCard } from "@/components/ChatCard";
 import { FlowDiagram } from "@/components/FlowDiagram";
 import { FadeIn } from "@/components/visual/FadeIn";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -37,10 +36,6 @@ export function HowItWorks() {
             </li>
           ))}
         </ol>
-
-        <FadeIn delay={0.1} className="mx-auto mt-12 max-w-md">
-          <ChatCard />
-        </FadeIn>
       </div>
     </section>
   );
