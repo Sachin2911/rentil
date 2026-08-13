@@ -4,6 +4,7 @@ import Home from "./page";
 import {
   audiences,
   cta,
+  faq,
   hero,
   how,
   problem,
@@ -25,9 +26,12 @@ describe("Home page", () => {
       how.heading,
       visibility.heading,
       audiences.heading,
+      faq.heading,
       cta.heading,
     ]) {
-      expect(screen.getByRole("heading", { name: heading })).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { name: heading }),
+      ).toBeInTheDocument();
     }
 
     // Chrome
@@ -38,7 +42,7 @@ describe("Home page", () => {
 
   it("anchors every nav target to a real section", () => {
     const { container } = render(<Home />);
-    for (const id of ["top", "why", "how", "see", "who"]) {
+    for (const id of ["top", "why", "how", "see", "who", "faq", "demo"]) {
       expect(container.querySelector(`#${id}`)).not.toBeNull();
     }
   });

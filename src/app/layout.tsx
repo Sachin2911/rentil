@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/content";
+import { baseUrl } from "@/lib/site-url";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -16,19 +17,25 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: new URL(baseUrl()),
   title: {
     default: `${site.name} | ${site.tagline}`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: `${site.name} | ${site.tagline}`,
     description: site.description,
-    url: site.url,
+    url: "/",
     siteName: site.name,
     locale: "en_ZA",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
   },
 };
 

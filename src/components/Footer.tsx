@@ -48,12 +48,10 @@ export function Footer() {
             </li>
             <li>
               <a
-                href={site.signInUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={site.demoHref}
                 className="text-sm text-ink-soft transition-colors hover:text-teal-dark"
               >
-                Sign in
+                Book a demo
               </a>
             </li>
           </ul>

@@ -2,7 +2,7 @@
 
 import { useId, useState } from "react";
 import { Check, LoaderCircle } from "lucide-react";
-import { lead } from "@/lib/content";
+import { lead, site } from "@/lib/content";
 
 export const LEAD_STORAGE_KEY = "rentil-lead-capture";
 
@@ -54,6 +54,15 @@ export function LeadForm({ onSuccess }: { onSuccess?: () => void }) {
         </p>
         <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">
           {lead.success.body}
+        </p>
+        <p className="mt-4 text-sm text-ink-soft">
+          {lead.success.note}{" "}
+          <a
+            href={`mailto:${site.email}`}
+            className="font-medium text-teal-dark underline decoration-sand underline-offset-4 hover:decoration-teal"
+          >
+            {site.email}
+          </a>
         </p>
       </div>
     );
@@ -153,6 +162,10 @@ export function LeadForm({ onSuccess }: { onSuccess?: () => void }) {
           lead.submit
         )}
       </button>
+
+      <p className="text-center text-xs leading-relaxed text-ink-soft">
+        {lead.reassure}
+      </p>
     </form>
   );
 }

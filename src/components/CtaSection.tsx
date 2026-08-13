@@ -5,7 +5,7 @@ import { cta, site } from "@/lib/content";
 
 export function CtaSection() {
   return (
-    <section className="p-3 sm:p-4">
+    <section id="demo" className="p-3 sm:p-4">
       <div className="relative overflow-hidden rounded-panel bg-teal-dark">
         <CtaBackdrop />
         <div className="relative z-10 mx-auto max-w-3xl px-6 py-24 text-center sm:py-28">
@@ -21,22 +21,16 @@ export function CtaSection() {
             <div className="mx-auto mt-10 max-w-md rounded-2xl bg-paper p-6 shadow-2xl shadow-teal-dark/50 sm:p-7">
               <LeadForm />
             </div>
-            <p className="mt-6 text-sm text-paper/90">
+            <p className="mx-auto mt-5 max-w-md text-xs leading-relaxed text-mist/90">
+              {cta.trustNote}
+            </p>
+            <p className="mt-4 text-sm text-paper/90">
               {cta.note}{" "}
               <a
                 href={`mailto:${site.email}`}
                 className="font-medium text-paper underline decoration-paper/50 underline-offset-4 hover:decoration-paper"
               >
                 {site.email}
-              </a>
-              <span aria-hidden> · </span>
-              <a
-                href={site.signInUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-paper underline decoration-paper/50 underline-offset-4 hover:decoration-paper"
-              >
-                {cta.secondaryCta}
               </a>
             </p>
           </FadeIn>
