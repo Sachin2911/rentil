@@ -14,10 +14,13 @@ export function HowItWorks() {
           />
         </FadeIn>
 
-        <ol className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {how.steps.map((step, i) => (
-            <FadeIn key={step.title} delay={i * 0.08} className="h-full">
-              <li className="flex h-full flex-col rounded-2xl border border-sand bg-paper p-7">
+            <li key={step.title} className="h-full">
+              <FadeIn
+                delay={i * 0.08}
+                className="flex h-full flex-col rounded-2xl border border-sand bg-paper p-8"
+              >
                 <span
                   className="font-display text-4xl font-light text-teal-bright"
                   aria-hidden
@@ -30,8 +33,8 @@ export function HowItWorks() {
                 <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
                   {step.body}
                 </p>
-              </li>
-            </FadeIn>
+              </FadeIn>
+            </li>
           ))}
         </ol>
       </div>

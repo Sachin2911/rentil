@@ -16,7 +16,7 @@ export function Assurances() {
           return (
             <FadeIn key={item.title} delay={i * 0.06}>
               <div className="flex items-start gap-4">
-                <span className="mt-0.5 grid size-10 shrink-0 place-items-center rounded-lg bg-cream text-teal">
+                <span className="mt-0.5 grid size-11 shrink-0 place-items-center rounded-xl bg-cream text-teal">
                   <Icon className="size-5" aria-hidden />
                 </span>
                 <div>

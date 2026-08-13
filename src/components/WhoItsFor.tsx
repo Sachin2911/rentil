@@ -11,7 +11,7 @@ export function WhoItsFor() {
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-bright">
           {audiences.eyebrow}
         </p>
-        <h2 className="mt-4 max-w-4xl font-display text-[clamp(2rem,4vw,3rem)] leading-[1.12] tracking-tight text-teal-dark">
+        <h2 className="mt-4 max-w-4xl font-display text-[clamp(2rem,4vw,3rem)] leading-[1.08] tracking-tight text-teal-dark">
           {audiences.heading}
         </h2>
       </FadeIn>

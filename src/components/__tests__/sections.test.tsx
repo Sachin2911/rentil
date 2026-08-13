@@ -11,6 +11,7 @@ import {
   audiences,
   cta,
   how,
+  lead,
   problem,
   site,
   visibility,
@@ -79,15 +80,13 @@ describe("Assurances", () => {
 });
 
 describe("CtaSection", () => {
-  it("renders the closing pitch with both actions and the email", () => {
+  it("renders the closing pitch with the lead form and contact links", () => {
     render(<CtaSection />);
     expect(
       screen.getByRole("heading", { name: cta.heading }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: cta.primaryCta })).toHaveAttribute(
-      "href",
-      site.demoHref,
-    );
+    expect(screen.getByRole("button", { name: lead.submit })).toBeInTheDocument();
+    expect(screen.getByLabelText(lead.emailLabel)).toBeRequired();
     expect(
       screen.getByRole("link", { name: cta.secondaryCta }),
     ).toHaveAttribute("href", site.signInUrl);

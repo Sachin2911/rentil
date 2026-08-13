@@ -27,7 +27,7 @@ export const hero = {
   eyebrow: "The AI admin layer for property management",
   headingA: "Handled,",
   headingB: "or on your desk.",
-  lede: "Every tenant message — WhatsApp, email or call — answered in seconds, or escalated to you with the full story attached. Nothing slips. Nothing is forgotten.",
+  lede: "Every tenant and owner message — WhatsApp, email or call — answered in seconds, or escalated to you with the full story attached. Nothing slips. Nothing is forgotten.",
   primaryCta: "Book a demo",
   secondaryCta: "Sign in",
   note: "No migration weekend. Nothing for tenants to install.",
@@ -171,6 +171,34 @@ export const cta = {
   primaryCta: "Book a demo",
   secondaryCta: "Sign in",
   note: "or write to us at",
+} as const;
+
+export const lead = {
+  nameLabel: "Name",
+  namePlaceholder: "Alex Naidoo",
+  emailLabel: "Work email",
+  emailPlaceholder: "you@agency.co.za",
+  portfolioLabel: "Portfolio size",
+  portfolioPlaceholder: "Select a range",
+  portfolioOptions: [
+    "Under 80 properties",
+    "80–250 properties",
+    "250–600 properties",
+    "600+ properties",
+    "Body corporate / scheme",
+  ],
+  submit: "Book a demo",
+  submitting: "Sending…",
+  success: {
+    title: "Thanks — talk soon.",
+    body: "We'll come back to you within one working day to set a time.",
+  },
+  error: "Something went wrong. Email us at hello@rello.work instead.",
+  modal: {
+    heading: "See it on your own portfolio.",
+    body: "A 30-minute walkthrough, no slideware. Leave your details and we'll set it up.",
+    dismiss: "Not now",
+  },
 } as const;
 
 export const footer = {
