@@ -1,13 +1,17 @@
 import { describe, expect, it } from "vitest";
 import {
-  assurances,
   audiences,
+  chat,
   cta,
+  faq,
+  flow,
+  founder,
   hero,
   how,
   inbox,
   lead,
   nav,
+  notFound,
   problem,
   site,
   visibility,
@@ -18,13 +22,12 @@ describe("site content", () => {
     expect(site.email).toMatch(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
   });
 
-  it("uses https for external links", () => {
-    expect(site.signInUrl).toMatch(/^https:\/\//);
+  it("uses https for the canonical site URL", () => {
     expect(site.url).toMatch(/^https:\/\//);
   });
 
-  it("books demos via the contact email", () => {
-    expect(site.demoHref).toContain(`mailto:${site.email}`);
+  it("books demos via the on-page form anchor", () => {
+    expect(site.demoHref).toBe("#demo");
   });
 
   it("names the product category in the tagline", () => {
@@ -35,6 +38,91 @@ describe("site content", () => {
     expect(`${hero.headingA} ${hero.headingB}`).toBe(
       "AI that answers every tenant message.",
     );
+  });
+});
+
+describe("section content", () => {
+  it("has five nav links that are all anchors", () => {
+    expect(nav.links).toHaveLength(5);
+    for (const link of nav.links) {
+      expect(link.href).toMatch(/^#/);
+      expect(link.label.length).toBeGreaterThan(0);
+    }
+  });
+
+  it("has three client quotes, each with a cause", () => {
+    expect(problem.quotes).toHaveLength(3);
+    for (const q of problem.quotes) {
+      expect(q.quote.length).toBeGreaterThan(0);
+      expect(q.cause.length).toBeGreaterThan(0);
+    }
+  });
+
+  it("describes the product in exactly three steps", () => {
+    expect(how.steps).toHaveLength(3);
+  });
+
+  it("draws the flow with three sources and two outcomes", () => {
+    expect(flow.sources).toHaveLength(3);
+    expect(flow.outcomes).toHaveLength(2);
+  });
+
+  it("shows a tenant chat that Rentil answers", () => {
+    expect(chat.messages).toHaveLength(2);
+    expect(chat.messages[0].from).toBe("tenant");
+    expect(chat.messages[1].from).toBe("rentil");
+  });
+
+  it("shows four dashboard stats with values and details", () => {
+    expect(visibility.stats).toHaveLength(4);
+    for (const stat of visibility.stats) {
+      expect(stat.value.length).toBeGreaterThan(0);
+      expect(stat.label.length).toBeGreaterThan(0);
+      expect(stat.detail.length).toBeGreaterThan(0);
+    }
+  });
+
+  it("targets three audience segments", () => {
+    expect(audiences.items).toHaveLength(3);
+  });
+
+  it("signs the founder note", () => {
+    expect(founder.body.length).toBeGreaterThanOrEqual(2);
+    expect(founder.name).toBe("Rowan");
+    expect(founder.role.length).toBeGreaterThan(0);
+  });
+
+  it("answers at least five real objections in the FAQ", () => {
+    expect(faq.items.length).toBeGreaterThanOrEqual(5);
+    for (const item of faq.items) {
+      expect(item.q.length).toBeGreaterThan(0);
+      expect(item.a.length).toBeGreaterThan(0);
+    }
+  });
+
+  it("keeps the inbox mock consistent", () => {
+    expect(inbox.items.length).toBeGreaterThan(0);
+    expect(inbox.waiting.amount).toMatch(/^R\s/);
+  });
+
+  it("has CTA copy with a trust note", () => {
+    expect(cta.primaryCta).toBe("Book a demo");
+    expect(cta.trustNote).toContain("POPIA");
+  });
+
+  it("has complete lead-capture copy", () => {
+    expect(lead.portfolioOptions.length).toBeGreaterThanOrEqual(4);
+    expect(lead.submit).toBe("Book a demo");
+    expect(lead.reassure.length).toBeGreaterThan(0);
+    expect(lead.success.title.length).toBeGreaterThan(0);
+    expect(lead.success.note.length).toBeGreaterThan(0);
+    expect(lead.modal.heading.length).toBeGreaterThan(0);
+    expect(lead.error).toContain(site.email);
+  });
+
+  it("has branded not-found copy", () => {
+    expect(notFound.title.length).toBeGreaterThan(0);
+    expect(notFound.cta.length).toBeGreaterThan(0);
   });
 });
 
@@ -58,74 +146,18 @@ describe("house style", () => {
       inbox,
       problem,
       how,
+      flow,
+      chat,
       visibility,
       audiences,
-      assurances,
+      founder,
+      faq,
       cta,
       lead,
+      notFound,
     };
     for (const text of allStrings(everything)) {
       expect(text).not.toMatch(/[—–]/);
     }
-  });
-});
-
-describe("section content", () => {
-  it("has four nav links that are all anchors", () => {
-    expect(nav.links).toHaveLength(4);
-    for (const link of nav.links) {
-      expect(link.href).toMatch(/^#/);
-      expect(link.label.length).toBeGreaterThan(0);
-    }
-  });
-
-  it("has three client quotes, each with a cause", () => {
-    expect(problem.quotes).toHaveLength(3);
-    for (const q of problem.quotes) {
-      expect(q.quote.length).toBeGreaterThan(0);
-      expect(q.cause.length).toBeGreaterThan(0);
-    }
-  });
-
-  it("describes the product in exactly four steps", () => {
-    expect(how.steps).toHaveLength(4);
-  });
-
-  it("shows four dashboard stats with values and details", () => {
-    expect(visibility.stats).toHaveLength(4);
-    for (const stat of visibility.stats) {
-      expect(stat.value.length).toBeGreaterThan(0);
-      expect(stat.label.length).toBeGreaterThan(0);
-      expect(stat.detail.length).toBeGreaterThan(0);
-    }
-  });
-
-  it("targets three audience segments, each with tags", () => {
-    expect(audiences.items).toHaveLength(3);
-    for (const segment of audiences.items) {
-      expect(segment.tags.length).toBeGreaterThan(0);
-    }
-  });
-
-  it("lists four assurances", () => {
-    expect(assurances.items).toHaveLength(4);
-  });
-
-  it("keeps the inbox mock consistent", () => {
-    expect(inbox.items.length).toBeGreaterThan(0);
-    expect(inbox.waiting.amount).toMatch(/^R\s/);
-  });
-
-  it("has CTA copy for both actions", () => {
-    expect(cta.primaryCta).toBe("Book a demo");
-    expect(cta.secondaryCta).toBe("Sign in");
-  });
-
-  it("has complete lead-capture copy", () => {
-    expect(lead.portfolioOptions.length).toBeGreaterThanOrEqual(4);
-    expect(lead.submit).toBe("Book a demo");
-    expect(lead.success.title.length).toBeGreaterThan(0);
-    expect(lead.modal.heading.length).toBeGreaterThan(0);
-    expect(lead.error).toContain(site.email);
   });
 });

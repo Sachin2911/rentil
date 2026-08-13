@@ -1,15 +1,19 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { Assurances } from "@/components/Assurances";
 import { CtaSection } from "@/components/CtaSection";
+import { Faq } from "@/components/Faq";
+import { FounderNote } from "@/components/FounderNote";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Problem } from "@/components/Problem";
 import { Visibility } from "@/components/Visibility";
 import { WhoItsFor } from "@/components/WhoItsFor";
 import {
-  assurances,
   audiences,
+  chat,
   cta,
+  faq,
+  flow,
+  founder,
   how,
   lead,
   problem,
@@ -31,7 +35,7 @@ describe("Problem", () => {
 });
 
 describe("HowItWorks", () => {
-  it("renders all four steps in order", () => {
+  it("renders all three steps in order", () => {
     render(<HowItWorks />);
     expect(
       screen.getByRole("heading", { name: how.heading }),
@@ -40,6 +44,26 @@ describe("HowItWorks", () => {
       .getAllByRole("heading", { level: 3 })
       .map((h) => h.textContent);
     expect(titles).toEqual(how.steps.map((s) => s.title));
+  });
+
+  it("draws the flow diagram from channels to outcomes", () => {
+    render(<HowItWorks />);
+    for (const source of flow.sources) {
+      expect(screen.getByText(source)).toBeInTheDocument();
+    }
+    expect(screen.getByText(flow.hub)).toBeInTheDocument();
+    for (const outcome of flow.outcomes) {
+      expect(screen.getByText(outcome.label)).toBeInTheDocument();
+    }
+  });
+
+  it("shows the tenant chat answered by Rentil", () => {
+    render(<HowItWorks />);
+    expect(screen.getByText(chat.heading)).toBeInTheDocument();
+    for (const message of chat.messages) {
+      expect(screen.getByText(message.text)).toBeInTheDocument();
+    }
+    expect(screen.getByText(chat.caption)).toBeInTheDocument();
   });
 });
 
@@ -62,34 +86,44 @@ describe("WhoItsFor", () => {
     ).toBeInTheDocument();
     for (const segment of audiences.items) {
       expect(screen.getByText(segment.title)).toBeInTheDocument();
-      for (const tag of segment.tags) {
-        expect(screen.getByText(tag)).toBeInTheDocument();
-      }
+      expect(screen.getByText(segment.body)).toBeInTheDocument();
     }
   });
 });
 
-describe("Assurances", () => {
-  it("renders all four assurance items", () => {
-    render(<Assurances />);
-    for (const item of assurances.items) {
-      expect(screen.getByText(item.title)).toBeInTheDocument();
-      expect(screen.getByText(item.body)).toBeInTheDocument();
+describe("FounderNote", () => {
+  it("renders every paragraph and the signature", () => {
+    render(<FounderNote />);
+    for (const paragraph of founder.body) {
+      expect(screen.getByText(paragraph)).toBeInTheDocument();
+    }
+    expect(screen.getByText(founder.name)).toBeInTheDocument();
+    expect(screen.getByText(founder.role)).toBeInTheDocument();
+  });
+});
+
+describe("Faq", () => {
+  it("renders every question and answer", () => {
+    render(<Faq />);
+    for (const item of faq.items) {
+      expect(screen.getByText(item.q)).toBeInTheDocument();
+      expect(screen.getByText(item.a)).toBeInTheDocument();
     }
   });
 });
 
 describe("CtaSection", () => {
-  it("renders the closing pitch with the lead form and contact links", () => {
-    render(<CtaSection />);
+  it("renders the closing pitch with the lead form, trust note and email", () => {
+    const { container } = render(<CtaSection />);
     expect(
       screen.getByRole("heading", { name: cta.heading }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: lead.submit })).toBeInTheDocument();
-    expect(screen.getByLabelText(lead.emailLabel)).toBeRequired();
+    expect(container.querySelector("#demo")).not.toBeNull();
     expect(
-      screen.getByRole("link", { name: cta.secondaryCta }),
-    ).toHaveAttribute("href", site.signInUrl);
+      screen.getByRole("button", { name: lead.submit }),
+    ).toBeInTheDocument();
+    expect(screen.getByLabelText(lead.emailLabel)).toBeRequired();
+    expect(screen.getByText(cta.trustNote)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: site.email })).toHaveAttribute(
       "href",
       `mailto:${site.email}`,

@@ -4,10 +4,12 @@ import { Problem } from "@/components/Problem";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Visibility } from "@/components/Visibility";
 import { WhoItsFor } from "@/components/WhoItsFor";
-import { Assurances } from "@/components/Assurances";
+import { FounderNote } from "@/components/FounderNote";
+import { Faq } from "@/components/Faq";
 import { CtaSection } from "@/components/CtaSection";
 import { Footer } from "@/components/Footer";
 import { LeadModal } from "@/components/lead/LeadModal";
+import { StickyMobileCta } from "@/components/StickyMobileCta";
 
 export default function Home() {
   return (
@@ -19,11 +21,13 @@ export default function Home() {
         <HowItWorks />
         <Visibility />
         <WhoItsFor />
-        <Assurances />
+        <FounderNote />
+        <Faq />
         <CtaSection />
       </main>
       <Footer />
       <LeadModal />
+      <StickyMobileCta />
     </>
   );
 }

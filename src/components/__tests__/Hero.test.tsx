@@ -4,7 +4,7 @@ import { Hero } from "@/components/Hero";
 import { hero, inbox, site } from "@/lib/content";
 
 describe("Hero", () => {
-  it("renders the tagline as the main heading", () => {
+  it("renders the product statement as the main heading", () => {
     render(<Hero />);
     const heading = screen.getByRole("heading", { level: 1 });
     expect(heading).toHaveTextContent(hero.headingA);
@@ -17,14 +17,18 @@ describe("Hero", () => {
     expect(screen.getByText(hero.note)).toBeInTheDocument();
   });
 
-  it("has demo and sign-in calls to action", () => {
+  it("points the demo CTA at the on-page form", () => {
     render(<Hero />);
     expect(
       screen.getByRole("link", { name: hero.primaryCta }),
     ).toHaveAttribute("href", site.demoHref);
+  });
+
+  it("offers a how-it-works path instead of a dead sign-in", () => {
+    render(<Hero />);
     expect(
       screen.getByRole("link", { name: hero.secondaryCta }),
-    ).toHaveAttribute("href", site.signInUrl);
+    ).toHaveAttribute("href", hero.secondaryHref);
   });
 
   it("shows the inbox product mock", () => {

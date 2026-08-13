@@ -60,7 +60,12 @@ Submissions POST to [`/api/leads`](src/app/api/leads/route.ts):
 - **Without it** (local dev): appended to `.data/leads.jsonl` (gitignored), or
   wherever `LEADS_FILE` points.
 
-Spam is filtered by a honeypot field; email format is validated server-side.
+Spam is filtered by a honeypot field plus per-IP rate limiting; email format is
+validated server-side.
+
+Optional env vars: `NEXT_PUBLIC_SITE_URL` (canonical origin for metadata,
+robots and sitemap), and `RESEND_API_KEY` + `LEAD_NOTIFY_EMAIL` to email the
+founder on every new lead (best effort, never blocks the lead).
 
 To read captured leads: `railway connect` to the environment's Postgres and
 `SELECT * FROM leads ORDER BY ts DESC;`

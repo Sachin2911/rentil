@@ -36,6 +36,8 @@ describe("LeadForm", () => {
     await waitFor(() =>
       expect(screen.getByText(lead.success.title)).toBeInTheDocument(),
     );
+    // Success state offers a faster path
+    expect(screen.getByRole("link", { name: /hello@rello\.work/ })).toBeInTheDocument();
 
     expect(fetchMock).toHaveBeenCalledTimes(1);
     const [url, init] = fetchMock.mock.calls[0];
@@ -89,5 +91,10 @@ describe("LeadForm", () => {
     expect(honeypot).not.toBeNull();
     expect(honeypot).toHaveAttribute("aria-hidden", "true");
     expect(honeypot).toHaveAttribute("tabindex", "-1");
+  });
+
+  it("reassures the visitor about what happens next", () => {
+    render(<LeadForm />);
+    expect(screen.getByText(lead.reassure)).toBeInTheDocument();
   });
 });

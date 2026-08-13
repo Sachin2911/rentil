@@ -63,18 +63,6 @@ export function Nav() {
 
         <div className="flex items-center gap-3">
           <a
-            href={site.signInUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`hidden text-sm font-medium transition-colors sm:block ${
-              solid
-                ? "text-ink-soft hover:text-teal-dark"
-                : "text-cream/80 hover:text-cream"
-            }`}
-          >
-            Sign in
-          </a>
-          <a
             href={site.demoHref}
             className={`inline-flex items-center rounded-full px-4 py-2 text-sm font-medium transition-colors ${
               solid
@@ -122,17 +110,6 @@ export function Nav() {
                 </a>
               </li>
             ))}
-            <li>
-              <a
-                href={site.signInUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMenuOpen(false)}
-                className="block rounded-lg px-3 py-2 text-base font-medium text-ink-soft transition-colors hover:bg-cream hover:text-teal-dark"
-              >
-                Sign in
-              </a>
-            </li>
           </ul>
         </div>
       ) : null}

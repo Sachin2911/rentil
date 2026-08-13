@@ -1,3 +1,5 @@
+import { ChatCard } from "@/components/ChatCard";
+import { FlowDiagram } from "@/components/FlowDiagram";
 import { FadeIn } from "@/components/visual/FadeIn";
 import { SectionHeading } from "@/components/SectionHeading";
 import { how } from "@/lib/content";
@@ -7,14 +9,12 @@ export function HowItWorks() {
     <section id="how" className="border-y border-sand/70 bg-parchment">
       <div className="mx-auto max-w-6xl px-6 py-24 sm:py-28">
         <FadeIn>
-          <SectionHeading
-            eyebrow={how.eyebrow}
-            heading={how.heading}
-            lede={how.lede}
-          />
+          <SectionHeading eyebrow={how.eyebrow} heading={how.heading} />
         </FadeIn>
 
-        <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <FlowDiagram />
+
+        <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {how.steps.map((step, i) => (
             <li key={step.title} className="h-full">
               <FadeIn
@@ -37,6 +37,10 @@ export function HowItWorks() {
             </li>
           ))}
         </ol>
+
+        <FadeIn delay={0.1} className="mx-auto mt-12 max-w-md">
+          <ChatCard />
+        </FadeIn>
       </div>
     </section>
   );

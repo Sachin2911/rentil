@@ -1,5 +1,6 @@
 import { ButtonLink } from "@/components/ui/Button";
 import { FadeIn } from "@/components/visual/FadeIn";
+import { HeadlineReveal } from "@/components/visual/HeadlineReveal";
 import { HeroBackdrop } from "@/components/visual/Backdrops";
 import { InboxCard } from "@/components/InboxCard";
 import { hero, site } from "@/lib/content";
@@ -16,13 +17,7 @@ export function Hero() {
                 {hero.eyebrow}
               </p>
             </FadeIn>
-            <FadeIn delay={0.08}>
-              <h1 className="mt-5 font-display text-[clamp(2.9rem,6.5vw,5.2rem)] leading-[1.02] tracking-tight text-cream">
-                {hero.headingA}
-                <br />
-                <span className="italic text-cream/75">{hero.headingB}</span>
-              </h1>
-            </FadeIn>
+            <HeadlineReveal lineA={hero.headingA} lineB={hero.headingB} />
             <FadeIn delay={0.16}>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-mist">
                 {hero.lede}
@@ -33,7 +28,7 @@ export function Hero() {
                 <ButtonLink href={site.demoHref} variant="cream">
                   {hero.primaryCta}
                 </ButtonLink>
-                <ButtonLink href={site.signInUrl} variant="ghost-light">
+                <ButtonLink href={hero.secondaryHref} variant="ghost-light">
                   {hero.secondaryCta}
                 </ButtonLink>
               </div>

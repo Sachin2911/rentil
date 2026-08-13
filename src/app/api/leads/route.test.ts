@@ -78,4 +78,26 @@ describe("POST /api/leads", () => {
     // nothing written
     await expect(readFile(file, "utf8")).rejects.toThrow();
   });
+
+  it("rate limits a single client after ten requests in a minute", async () => {
+    const { POST } = await import("./route");
+    const withIp = (i: number) =>
+      new Request("http://localhost/api/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-forwarded-for": "203.0.113.7",
+        },
+        body: JSON.stringify({ email: `p${i}@agency.co.za` }),
+      });
+
+    for (let i = 0; i < 10; i++) {
+      const res = await POST(withIp(i));
+      expect(res.status).toBe(200);
+    }
+    const blocked = await POST(withIp(10));
+    expect(blocked.status).toBe(429);
+    const json = await blocked.json();
+    expect(json.ok).toBe(false);
+  });
 });

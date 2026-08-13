@@ -28,19 +28,9 @@ export function WhoItsFor() {
                 <h3 className="mt-6 text-lg font-semibold text-teal-dark">
                   {item.title}
                 </h3>
-                <p className="mt-2.5 flex-1 text-[15px] leading-relaxed text-ink-soft">
+                <p className="mt-2.5 text-[15px] leading-relaxed text-ink-soft">
                   {item.body}
                 </p>
-                <ul className="mt-6 flex flex-wrap gap-2">
-                  {item.tags.map((tag) => (
-                    <li
-                      key={tag}
-                      className="rounded-full bg-cream px-3 py-1 text-xs font-medium text-teal-dark"
-                    >
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
               </div>
             </FadeIn>
           );

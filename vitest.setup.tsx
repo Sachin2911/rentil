@@ -1,6 +1,11 @@
 import "@testing-library/jest-dom/vitest";
 import { cleanup } from "@testing-library/react";
+import { MotionGlobalConfig } from "motion/react";
 import { afterEach, vi } from "vitest";
+
+// jsdom cannot drive real animation frames to completion, which would leave
+// AnimatePresence exit animations hanging forever. Resolve them instantly.
+MotionGlobalConfig.skipAnimations = true;
 
 afterEach(() => {
   cleanup();

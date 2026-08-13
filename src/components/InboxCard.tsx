@@ -1,7 +1,29 @@
+"use client";
+
+import { motion, useReducedMotion } from "motion/react";
 import { Check } from "lucide-react";
 import { inbox } from "@/lib/content";
 
+const STAGGER = 0.55;
+const FIRST_DELAY = 0.5;
+
+const row = {
+  hidden: { opacity: 0, y: 8 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: [0.22, 0.61, 0.36, 1] as const },
+  },
+};
+
+/**
+ * The product mock plays as a live sequence on first view: rows arrive one
+ * at a time, then the approval card lands. Reduced motion renders it settled.
+ */
 export function InboxCard() {
+  const reduceMotion = useReducedMotion();
+  const waitingDelay = FIRST_DELAY + inbox.items.length * STAGGER + 0.25;
+
   return (
     <div className="overflow-hidden rounded-2xl bg-paper shadow-2xl shadow-teal-dark/40 ring-1 ring-teal-dark/10">
       <div className="flex items-center justify-between border-b border-sand bg-cream/60 px-5 py-4">
@@ -15,10 +37,17 @@ export function InboxCard() {
         </span>
       </div>
 
-      <ul className="px-5">
+      <motion.ul
+        className="px-5"
+        initial={reduceMotion ? false : "hidden"}
+        whileInView="show"
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ staggerChildren: STAGGER, delayChildren: FIRST_DELAY }}
+      >
         {inbox.items.map((item) => (
-          <li
+          <motion.li
             key={item.time}
+            variants={row}
             className="flex items-center gap-3 border-b border-sand/60 py-3.5 last:border-b-0"
           >
             <span className="w-11 shrink-0 font-mono text-xs text-ink-soft">
@@ -26,11 +55,21 @@ export function InboxCard() {
             </span>
             <span className="flex-1 text-sm text-ink">{item.text}</span>
             <Check className="size-4 shrink-0 text-teal-bright" aria-hidden />
-          </li>
+          </motion.li>
         ))}
-      </ul>
+      </motion.ul>
 
-      <div className="m-4 rounded-xl border border-sand bg-cream p-4">
+      <motion.div
+        className="m-4 rounded-xl border border-sand bg-cream p-4"
+        initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{
+          duration: 0.55,
+          delay: waitingDelay,
+          ease: [0.22, 0.61, 0.36, 1],
+        }}
+      >
         <p className="text-[11px] font-semibold uppercase tracking-widest text-amber">
           {inbox.waiting.label}
         </p>
@@ -46,7 +85,7 @@ export function InboxCard() {
             {inbox.waiting.hold}
           </span>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
