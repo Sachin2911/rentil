@@ -69,3 +69,5 @@ To read captured leads: `railway connect` to the environment's Postgres and
 
 Vitest + Testing Library, jsdom environment. WebGL shader components are stubbed in
 [`vitest.setup.tsx`](vitest.setup.tsx) since jsdom has no WebGL context.
+
+<!-- CD smoke: 2026-08-13T07:42:08Z -->
